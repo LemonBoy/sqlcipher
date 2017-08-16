@@ -36,6 +36,9 @@
 /* Define to 1 if you have the `tomcrypt' library (-ltomcrypt). */
 #undef HAVE_LIBTOMCRYPT
 
+/* Define to 1 if you have the `mbedtls' library. */
+#undef HAVE_LIBMBEDTLS
+
 /* Define to 1 if you have the `localtime_r' function. */
 #undef HAVE_LOCALTIME_R
 

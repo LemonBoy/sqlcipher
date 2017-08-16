@@ -130,6 +130,9 @@ void sqlcipher_activate() {
 #elif defined (SQLCIPHER_CRYPTO_OPENSSL)
     extern int sqlcipher_openssl_setup(sqlcipher_provider *p);
     sqlcipher_openssl_setup(p);
+#elif defined (SQLCIPHER_CRYPTO_MBEDTLS)
+    extern int sqlcipher_mbedtls_setup(sqlcipher_provider *p);
+    sqlcipher_mbedtls_setup(p);
 #else
 #error "NO DEFAULT SQLCIPHER CRYPTO PROVIDER DEFINED"
 #endif
@@ -1204,6 +1207,7 @@ int sqlcipher_codec_add_random(codec_ctx *ctx, const char *zRight, int random_sz
   return SQLITE_ERROR;
 }
 
+#ifndef SQLITE_OMIT_DEPRECATED
 int sqlcipher_cipher_profile(sqlite3 *db, const char *destination){
   FILE *f;
   if(sqlite3StrICmp(destination, "stdout") == 0){
@@ -1232,6 +1236,7 @@ static void sqlcipher_profile_callback(void *file, const char *sql, sqlite3_uint
   double elapsed = run_time/1000000.0;
   if(f) fprintf(f, "Elapsed time:%.3f ms - %s\n", elapsed, sql);
 }
+#endif
 
 int sqlcipher_codec_fips_status(codec_ctx *ctx) {
   return ctx->read_ctx->provider->fips_status(ctx->read_ctx);

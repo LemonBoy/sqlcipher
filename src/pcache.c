@@ -139,6 +139,8 @@ int sqlite3PcachePageSanity(PgHdr *pPg){
   */
   return 1;
 }
+#else
+#define sqlite3PcachePageSanity(A) 1
 #endif /* SQLITE_DEBUG */
 
 

@@ -3642,6 +3642,8 @@ debugCompareEnd:
   if( pKeyInfo->db->mallocFailed ) return 1;
   return 0;
 }
+#else
+#define vdbeRecordCompareDebug(A,B,C,D) 1
 #endif
 
 #if SQLITE_DEBUG
